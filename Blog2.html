@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anime blog</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    /* Navigation */
+    nav {
+      background: #0077cc;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.4em;
+      cursor: default;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffdd57;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+      flex: 1;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      gap: 20px;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      width: 250px;
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+      align-self: flex-start;
+    }
+    aside.sidebar h3 {
+      margin-top: 0;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    aside.sidebar ul {
+      list-style: none;
+      margin: 10px 0 0 0;
+      padding-left: 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    aside.sidebar ul.open {
+      max-height: 200px; /* enough for content */
+    }
+    aside.sidebar ul li {
+      margin-bottom: 8px;
+    }
+    aside.sidebar ul li a {
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    aside.sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+    .toggle-icon {
+      font-weight: bold;
+      font-size: 1.2em;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    .toggle-icon.rotate {
+      transform: rotate(90deg);
+    }
+
+    /* Main content */
+    main.content {
+      flex: 1;
+      background: white;
+      border-radius: 8px;
+      padding: 25px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    main.content article {
+      margin-bottom: 40px;
+    }
+    main.content article h2 {
+      margin-top: 0;
+    }
+    main.content article time {
+      color: #777;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin: 20px 0 40px;
+      color: #777;
+      font-size: 0.9em;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        padding: 0 10px;
+      }
+      aside.sidebar {
+        width: 100%;
+        position: relative;
+        top: auto;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">HIRO</div>
+    <ul>
+      <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+      <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
+      <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h3 onclick="toggleSection('categories')">
+        Categories
+        <span class="toggle-icon" id="cat-toggle">&#9654;</span>
+      </h3>
+      <ul id="categories">
+        <li><a href="#post1">Tech</a></li>
+        <li><a href="#post2">Lifestyle</a></li>
+        <li><a href="#post3">Travel</a></li>
+      </ul>
+
+      <h3 onclick="toggleSection('archives')">
+        Archives
+        <span class="toggle-icon" id="arch-toggle">&#9654;</span>
+      </h3>
+      <ul id="archives">
+        <li><a href="#post1">May 2025</a></li>
+        <li><a href="#post2">April 2025</a></li>
+        <li><a href="#post3">March 2025</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section id="home">
+        <article id="post1">
+          <h2>Blog Post Title 1</h2>
+          <time datetime="2025-05-17">Published on May 17, 2025</time>
+          <p>This is the first paragraph of your blog post. You can write your content here to share your ideas or stories with your readers.</p>
+          <p>Feel free to add more paragraphs, images, or other content as you like.</p>
+        </article>
+
+        <article id="post2">
+          <h2>Blog Post Title 2</h2>
+          <time datetime="2025-05-10">Published on May 10, 2025</time>
+          <p>Here is another blog post. The design is kept simple for readability and ease of use.</p>
+        </article>
+
+        <article id="post3">
+          <h2>Blog Post Title 3</h2>
+          <time datetime="2025-04-25">Published on April 25, 2025</time>
+          <p>This is a third post to showcase more content and scrolling.</p>
+        </article>
+      </section>
+
+      <section id="about" style="display:none;">
+        <h2>About Me</h2>
+        <p>This is a simple blog template created to show how navigation and sidebar can be added with interactivity.</p>
+      </section>
+
+      <section id="contact" style="display:none;">
+        <h2>Contact</h2>
+        <p>You can reach me at <a href="mailto:example@blog.com">example@blog.com</a>.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    &copy; 2025 My Simple Blog. All rights reserved.
+  </footer>
+
+  <script>
+    // Sidebar collapsible sections
+    function toggleSection(id) {
+      const ul = document.getElementById(id);
+      const toggleIcon = document.getElementById(id === 'categories' ? 'cat-toggle' : 'arch-toggle');
+      if (ul.classList.contains('open')) {
+        ul.classList.remove('open');
+        toggleIcon.classList.remove('rotate');
+      } else {
+        ul.classList.add('open');
+        toggleIcon.classList.add('rotate');
+      }
+    }
+
+    // Navigation smooth scrolling and showing/hiding sections
+    function scrollToSection(sectionId) {
+      const sections = ['home', 'about', 'contact'];
+      sections.forEach(id => {
+        const sec = document.getElementById(id);
+        if (sec) {
+          sec.style.display = (id === sectionId) ? 'block' : 'none';
+        }
+      });
+      if (sectionId === 'home') {
+        // Scroll to top of blog posts
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Initialize sidebar sections closed
+    document.getElementById('categories').classList.remove('open');
+    document.getElementById('archives').classList.remove('open');
+  </script>
+</body>
+</html>
